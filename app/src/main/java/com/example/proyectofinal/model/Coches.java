@@ -3,10 +3,12 @@ package com.example.proyectofinal.model;
 public class Coches {
     private int imagen;
     private String nombre;
+    private String desc;
 
-    public Coches(int imagen, String nombre) {
+    public Coches(int imagen, String nombre, String desc) {
         this.imagen = imagen;
         this.nombre = nombre;
+        this.desc = desc;
 
     }
 
@@ -24,5 +26,13 @@ public class Coches {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 }
