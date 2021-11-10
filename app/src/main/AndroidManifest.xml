@@ -11,8 +11,11 @@
         android:theme="@style/Theme.ProyectoFinal">
 
         <activity
-            android:name=".controller.MainActivity"
-            android:exported="true">
+            android:name=".controller.RecView"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+            <!--  android:theme="@style/Theme.AppCompat.NoActionBar" elimina el actionBar de solo
+             este activity, si se coloca en application, lo elimina de toda la aplicaion-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER"/>
