@@ -8,11 +8,17 @@
         <item name="android:fontFamily">serif-monospace</item>
     </style>
 
-    <style name="Descripcion" parent="TextAppearance.AppCompat">
+    <style name="DescCoche" parent="TextAppearance.AppCompat">
         <item name="android:textColor">@color/white</item>
         <item name="android:textAlignment">textStart</item>
         <item name="android:textSize">16sp</item>
         <item name="android:fontFamily">sans-serif</item>
+    </style>
 
+    <style name="TextRecView" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">sans-serif-black</item>
     </style>
 </resources>

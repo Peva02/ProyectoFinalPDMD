@@ -18,14 +18,11 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
+        style="@style/TextRecView"
         android:id="@+id/tw_nombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="16dp"
-        android:fontFamily="sans-serif-black"
         android:text="@string/nombre"
-        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
