@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectoFinal">
         <activity
+            android:name=".controller.Preferences"
+            android:exported="true" />
+        <activity
             android:name=".controller.DescCoche"
             android:exported="true" />
         <activity
