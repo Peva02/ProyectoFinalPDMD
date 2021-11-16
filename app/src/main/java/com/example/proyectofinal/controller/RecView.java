@@ -31,8 +31,8 @@ public class RecView extends AppCompatActivity {
 
         listCoches = new ArrayList<>();
         recyclerAdapter = new Adapter(setCoches());
-        //Creo un setOnclickListener que al pulsarlo, lanzará una nueva actividad donde se mostrará,la imagen del coche, con su nombre
-        //y descipcion
+        /**Creo un setOnclickListener que al pulsarlo, lanzará una nueva actividad donde se mostrará,la imagen del coche, con su nombre
+        y descipcion*/
         recyclerAdapter.setOnclickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -48,14 +48,14 @@ public class RecView extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        //Creo un GridLayoutManager de tal manera que se muestren dos objetos por fila
+        /**Creo un GridLayoutManager de tal manera que se muestren dos objetos por fila*/
         GridLayoutManager glayout = new GridLayoutManager(this, 2);
         recyclerView = findViewById(R.id.recView);
         recyclerView.setAdapter(recyclerAdapter);
         recyclerView.setLayoutManager(glayout);
     }
 
-    //Llena el array de objetos
+    /**Llena el array de objetos*/
     private List<Coches> setCoches() {
         listCoches = new ArrayList<Coches>(listCoches);
         listCoches.add(new Coches(R.drawable.audi, "Audi R8", "Es un coche que es muy rapido y bonito"));

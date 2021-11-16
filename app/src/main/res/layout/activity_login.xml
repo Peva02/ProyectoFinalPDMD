@@ -49,12 +49,34 @@
         tools:textColorHint="@color/white" />
 
     <Button
+        android:id="@+id/login"
         style="@style/Button"
-        android:id="@+id/button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Login"
+        app:layout_constraintEnd_toEndOf="@+id/passwd"
+        app:layout_constraintStart_toStartOf="@+id/passwd"
+        app:layout_constraintTop_toBottomOf="@+id/passwd" />
+
+    <TextView
+        android:id="@+id/add"
+        style="@style/DescCoche"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Si no tiens cuenta registrate aquí"
+        app:layout_constraintEnd_toEndOf="@+id/login"
+        app:layout_constraintTop_toBottomOf="@+id/login"
+        tools:textStyle="italic" />
+
+    <Button
+        style="@style/Button"
+        android:id="@+id/register"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Registrarse"
         app:layout_constraintEnd_toEndOf="@+id/passwd"
         app:layout_constraintStart_toStartOf="@+id/passwd"
         app:layout_constraintTop_toBottomOf="@+id/passwd" />
