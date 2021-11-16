@@ -21,7 +21,7 @@ public class DescCoche extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_desc_coche);
-        //Añadir boton en actionBar para volver al Home activity
+        /**Añadir boton en actionBar para volver al Home activity*/
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
@@ -47,12 +47,18 @@ public class DescCoche extends AppCompatActivity {
         }
     }
 
+    /**
+     * Añade el boton de ajustes a ActionBar
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_preferences, menu);
         return true;
     }
 
+    /**
+     * Indica que va a sudecer cuando se pulse cada botón
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -60,7 +66,7 @@ public class DescCoche extends AppCompatActivity {
             case android.R.id.home:
                 onBackPressed();
                 return true;
-            case ajustes:
+            case R.id.ajustes:
                 Intent i = new Intent(DescCoche.this, Preferences.class);
                 startActivity(i);
                 return true;

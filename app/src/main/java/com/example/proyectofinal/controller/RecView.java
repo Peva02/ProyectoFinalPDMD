@@ -2,6 +2,8 @@ package com.example.proyectofinal.controller;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,7 +26,9 @@ public class RecView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_rec_view);
+
+
         listCoches = new ArrayList<>();
         recyclerAdapter = new Adapter(setCoches());
         //Creo un setOnclickListener que al pulsarlo, lanzará una nueva actividad donde se mostrará,la imagen del coche, con su nombre
@@ -72,8 +76,19 @@ public class RecView extends AppCompatActivity {
         listCoches.add(new Coches(R.drawable.audi, "Audi R8", "Es un coche que es muy rapido y bonito"));
         listCoches.add(new Coches(R.drawable.cooper, "Cooper", "Es un coche pequeño y con mucha movilidad"));
         listCoches.add(new Coches(R.drawable.cooper, "Cooper", "Es un coche pequeño y con mucha movilidad"));
-
-
         return listCoches;
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_preferences, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent i = new Intent(RecView.this, Preferences.class);
+        startActivity(i);
+        return true;
     }
 }
