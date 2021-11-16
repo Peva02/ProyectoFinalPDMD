@@ -54,31 +54,42 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Login"
+        android:text="Conectarse"
         app:layout_constraintEnd_toEndOf="@+id/passwd"
         app:layout_constraintStart_toStartOf="@+id/passwd"
         app:layout_constraintTop_toBottomOf="@+id/passwd" />
 
     <TextView
-        android:id="@+id/add"
         style="@style/DescCoche"
+        android:textSize="10sp"
+        android:id="@+id/add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Si no tiens cuenta registrate aquí"
         app:layout_constraintEnd_toEndOf="@+id/login"
-        app:layout_constraintTop_toBottomOf="@+id/login"
-        tools:textStyle="italic" />
+        app:layout_constraintTop_toBottomOf="@+id/login" />
 
     <Button
-        style="@style/Button"
         android:id="@+id/register"
+        style="@style/Button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="Registrarse"
         app:layout_constraintEnd_toEndOf="@+id/passwd"
         app:layout_constraintStart_toStartOf="@+id/passwd"
         app:layout_constraintTop_toBottomOf="@+id/passwd" />
+
+    <TextView
+        android:id="@+id/cancel"
+        style="@style/DescCoche"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Cancelar registro"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="@+id/register"
+        app:layout_constraintTop_toBottomOf="@+id/register" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
