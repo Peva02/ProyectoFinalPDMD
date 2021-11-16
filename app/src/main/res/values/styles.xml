@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--Hoja de estilos personalizada-->
 <resources>
-
     <style name="Title" parent="TextAppearance.AppCompat">
         <item name="android:textColor">@color/dorado</item>
         <item name="android:textAlignment">center</item>
@@ -21,12 +21,15 @@
         <item name="android:textSize">16sp</item>
         <item name="android:fontFamily">sans-serif-black</item>
     </style>
-    <style name="Button" parent="TextAppearance.AppCompat">
-        <item name="android:textColor">@color/white</item>
+    <style name="Button" parent="@android:style/Widget.Button">
+        <item name="android:textColor">@color/black</item>
         <item name="android:textAlignment">center</item>
         <item name="android:textSize">16sp</item>
         <item name="android:fontFamily">sans-serif</item>
-        <item name="background">@color/dorado</item>
-        <item name="cornerRadius">20sp</item>
+        <item name="android:background">@drawable/border_btn</item>
+        <item name="android:radius">20sp</item>
+    </style>
+    <style name="BGConstraint">
+        <item name="android:background">@color/black</item>
     </style>
 </resources>

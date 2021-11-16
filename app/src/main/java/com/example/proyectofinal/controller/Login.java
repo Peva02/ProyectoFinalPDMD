@@ -87,8 +87,10 @@ public class Login extends AppCompatActivity {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(Login.this, Login.class);
-                startActivity(i);
+                findViewById(R.id.login).setVisibility(View.VISIBLE);
+                findViewById(R.id.add).setVisibility(View.VISIBLE);
+                findViewById(R.id.register).setVisibility(View.GONE);
+                findViewById(R.id.cancel).setVisibility(View.GONE);
             }
         });
 

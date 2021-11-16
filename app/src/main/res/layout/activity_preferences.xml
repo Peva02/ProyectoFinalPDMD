@@ -5,6 +5,8 @@
     android:id="@+id/layoutPreferences"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".controller.Preferences">
+    tools:context=".controller.Preferences"
+    style="@style/BGConstraint"
+    >
 
 </androidx.constraintlayout.widget.ConstraintLayout>
