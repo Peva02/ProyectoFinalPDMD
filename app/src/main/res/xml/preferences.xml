@@ -3,6 +3,7 @@
     <PreferenceCategory android:title="Ajustes">
         <CheckBoxPreference
             android:defaultValue="false"
+            android:foregroundTint="#5E35B1"
             android:key="box1"
             android:title="Check box preference" />
         <CheckBoxPreference

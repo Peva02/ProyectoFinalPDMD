@@ -34,7 +34,7 @@ public class DescCoche extends AppCompatActivity {
         Intent i = getIntent();
 
         String nombre = i.getStringExtra("nombre");
-        txtNombre.setText(nombre);
+        txtNombre.setText(nombre.toUpperCase());
 
         String desc = i.getStringExtra("desc");
         txtDesc.setText(desc);
