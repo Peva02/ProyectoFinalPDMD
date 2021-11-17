@@ -12,13 +12,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.proyectofinal.R;
 import com.example.proyectofinal.adapter.Adapter;
-import com.example.proyectofinal.model.Coches;
+import com.example.proyectofinal.model.Planeta;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class RecView extends AppCompatActivity {
-    ArrayList<Coches> listCoches;
+    ArrayList<Planeta> listCoches;
     RecyclerView recyclerView;
     //Instancio adaptador de mi clase
     Adapter recyclerAdapter;
@@ -36,7 +36,7 @@ public class RecView extends AppCompatActivity {
         recyclerAdapter.setOnclickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(RecView.this, DescCoche.class);
+                Intent i = new Intent(RecView.this, DescPlaneta.class);
                 String nombre = listCoches.get(recyclerView.getChildAdapterPosition(view)).getNombre();
                 String desc = listCoches.get(recyclerView.getChildAdapterPosition(view)).getDesc();
                 int image = listCoches.get(recyclerView.getChildAdapterPosition(view)).getImagen();
@@ -56,26 +56,26 @@ public class RecView extends AppCompatActivity {
     }
 
     /**Llena el array de objetos*/
-    private List<Coches> setCoches() {
-        listCoches = new ArrayList<Coches>(listCoches);
-        listCoches.add(new Coches(R.drawable.audi, "Audi R8", "Es un coche que es muy rapido y bonito"));
-        listCoches.add(new Coches(R.drawable.audi, "Audi R8", "Es un coche que es muy rapido y bonito"));
-        listCoches.add(new Coches(R.drawable.cooper, "Cooper", "Es un coche pequeño y con mucha movilidad"));
-        listCoches.add(new Coches(R.drawable.audi, "Audi R8", "Es un coche que es muy rapido y bonito"));
-        listCoches.add(new Coches(R.drawable.cooper, "Cooper", "Es un coche pequeño y con mucha movilidad"));
-        listCoches.add(new Coches(R.drawable.audi, "Audi R8", "Es un coche que es muy rapido y bonito"));
-        listCoches.add(new Coches(R.drawable.cooper, "Cooper", "Es un coche pequeño y con mucha movilidad"));
-        listCoches.add(new Coches(R.drawable.cooper, "Cooper", "Es un coche pequeño y con mucha movilidad"));
-        listCoches.add(new Coches(R.drawable.audi, "Audi R8", "Es un coche que es muy rapido y bonito"));
-        listCoches.add(new Coches(R.drawable.cooper, "Cooper", "Es un coche pequeño y con mucha movilidad"));
-        listCoches.add(new Coches(R.drawable.audi, "Audi R8", "Es un coche que es muy rapido y bonito"));
-        listCoches.add(new Coches(R.drawable.cooper, "Cooper", "Es un coche pequeño y con mucha movilidad"));
-        listCoches.add(new Coches(R.drawable.cooper, "Cooper", "Es un coche pequeño y con mucha movilidad"));
-        listCoches.add(new Coches(R.drawable.audi, "Audi R8", "Es un coche que es muy rapido y bonito"));
-        listCoches.add(new Coches(R.drawable.cooper, "Cooper", "Es un coche pequeño y con mucha movilidad"));
-        listCoches.add(new Coches(R.drawable.audi, "Audi R8", "Es un coche que es muy rapido y bonito"));
-        listCoches.add(new Coches(R.drawable.cooper, "Cooper", "Es un coche pequeño y con mucha movilidad"));
-        listCoches.add(new Coches(R.drawable.cooper, "Cooper", "Es un coche pequeño y con mucha movilidad"));
+    private List<Planeta> setCoches() {
+        listCoches = new ArrayList<Planeta>(listCoches);
+        listCoches.add(new Planeta(R.drawable.audi, "Audi R8", "Es un coche que es muy rapido y bonito"));
+        listCoches.add(new Planeta(R.drawable.audi, "Audi R8", "Es un coche que es muy rapido y bonito"));
+        listCoches.add(new Planeta(R.drawable.cooper, "Cooper", "Es un coche pequeño y con mucha movilidad"));
+        listCoches.add(new Planeta(R.drawable.audi, "Audi R8", "Es un coche que es muy rapido y bonito"));
+        listCoches.add(new Planeta(R.drawable.cooper, "Cooper", "Es un coche pequeño y con mucha movilidad"));
+        listCoches.add(new Planeta(R.drawable.audi, "Audi R8", "Es un coche que es muy rapido y bonito"));
+        listCoches.add(new Planeta(R.drawable.cooper, "Cooper", "Es un coche pequeño y con mucha movilidad"));
+        listCoches.add(new Planeta(R.drawable.cooper, "Cooper", "Es un coche pequeño y con mucha movilidad"));
+        listCoches.add(new Planeta(R.drawable.audi, "Audi R8", "Es un coche que es muy rapido y bonito"));
+        listCoches.add(new Planeta(R.drawable.cooper, "Cooper", "Es un coche pequeño y con mucha movilidad"));
+        listCoches.add(new Planeta(R.drawable.audi, "Audi R8", "Es un coche que es muy rapido y bonito"));
+        listCoches.add(new Planeta(R.drawable.cooper, "Cooper", "Es un coche pequeño y con mucha movilidad"));
+        listCoches.add(new Planeta(R.drawable.cooper, "Cooper", "Es un coche pequeño y con mucha movilidad"));
+        listCoches.add(new Planeta(R.drawable.audi, "Audi R8", "Es un coche que es muy rapido y bonito"));
+        listCoches.add(new Planeta(R.drawable.cooper, "Cooper", "Es un coche pequeño y con mucha movilidad"));
+        listCoches.add(new Planeta(R.drawable.audi, "Audi R8", "Es un coche que es muy rapido y bonito"));
+        listCoches.add(new Planeta(R.drawable.cooper, "Cooper", "Es un coche pequeño y con mucha movilidad"));
+        listCoches.add(new Planeta(R.drawable.cooper, "Cooper", "Es un coche pequeño y con mucha movilidad"));
         return listCoches;
     }
 

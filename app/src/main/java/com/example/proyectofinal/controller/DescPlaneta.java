@@ -1,7 +1,5 @@
 package com.example.proyectofinal.controller;
 
-import static com.example.proyectofinal.R.id.ajustes;
-
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,7 +13,7 @@ import android.widget.Toast;
 
 import com.example.proyectofinal.R;
 
-public class DescCoche extends AppCompatActivity {
+public class DescPlaneta extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +65,7 @@ public class DescCoche extends AppCompatActivity {
                 onBackPressed();
                 return true;
             case R.id.ajustes:
-                Intent i = new Intent(DescCoche.this, Preferences.class);
+                Intent i = new Intent(DescPlaneta.this, Preferences.class);
                 startActivity(i);
                 return true;
         }

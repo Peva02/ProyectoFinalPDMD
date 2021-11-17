@@ -1,11 +1,11 @@
 package com.example.proyectofinal.model;
 
-public class Coches {
+public class Planeta {
     private int imagen;
     private String nombre;
     private String desc;
 
-    public Coches(int imagen, String nombre, String desc) {
+    public Planeta(int imagen, String nombre, String desc) {
         this.imagen = imagen;
         this.nombre = nombre;
         this.desc = desc;

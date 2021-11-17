@@ -23,7 +23,7 @@
             android:name=".controller.Preferences"
             android:exported="true" />
         <activity
-            android:name=".controller.DescCoche"
+            android:name=".controller.DescPlaneta"
             android:exported="true" />
         <activity
             android:name=".controller.RecView"
