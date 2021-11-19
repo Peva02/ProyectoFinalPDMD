@@ -44,8 +44,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.RecyclerHolder> implem
      * */
     public void onBindViewHolder(@NonNull RecyclerHolder holder, int position) {
         Planeta coche = listImagenes.get(position);
-        holder.imagen.setImageResource(coche.getImagen());
-        holder.nombre.setText(coche.getNombre());
+        holder.imagen.setImageResource(coche.getUrl());
+        holder.nombre.setText(coche.getNasa_id());
     }
 
     @Override

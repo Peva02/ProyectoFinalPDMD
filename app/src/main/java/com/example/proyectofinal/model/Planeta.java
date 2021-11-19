@@ -1,38 +1,39 @@
 package com.example.proyectofinal.model;
 
 public class Planeta {
-    private int imagen;
-    private String nombre;
-    private String desc;
+    //URL_NASA + strUrl+"/"+strUrl+"~orig.jpg"
+    private int url;
+    private String nasa_id;
+    private String titulo;
 
-    public Planeta(int imagen, String nombre, String desc) {
-        this.imagen = imagen;
-        this.nombre = nombre;
-        this.desc = desc;
+    public Planeta(int url, String nasa_id, String titulo) {
+        this.url = url;
+        this.nasa_id = nasa_id;
+        this.titulo = titulo;
 
     }
 
-    public int getImagen() {
-        return imagen;
+    public int getUrl() {
+        return url;
     }
 
-    public void setImagen(int imagen) {
-        this.imagen = imagen;
+    public void setUrl(int url) {
+        this.url = url;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNasa_id() {
+        return nasa_id;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNasa_id(String nasa_id) {
+        this.nasa_id = nasa_id;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 }
