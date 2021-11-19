@@ -43,9 +43,12 @@ public class Adapter extends RecyclerView.Adapter<Adapter.RecyclerHolder> implem
      *llamado una vez se ha creado la vista de cada celda de la lista.
      * */
     public void onBindViewHolder(@NonNull RecyclerHolder holder, int position) {
-        Planeta coche = listImagenes.get(position);
-        holder.imagen.setImageResource(coche.getUrl());
-        holder.nombre.setText(coche.getNasa_id());
+        Planeta planeta = listImagenes.get(position);
+        /**============================
+         * AQUI HAY QUE METER LA IMAGEN DEL PLANETA A APRTIR DE LA URL
+         * =======================*/
+        holder.url.setImageResource(R.drawable.audi);
+        holder.nasa_id.setText(planeta.getNasa_id());
     }
 
     @Override
@@ -72,13 +75,13 @@ public class Adapter extends RecyclerView.Adapter<Adapter.RecyclerHolder> implem
      * Recrea los elementos de la vista del layout creado(custom_items.xml)
      */
     public class RecyclerHolder extends ViewHolder {
-        ImageView imagen;
-        TextView nombre;
+        ImageView url;
+        TextView nasa_id;
 
         public RecyclerHolder(@NonNull View itemView) {
             super(itemView);
-            imagen = (ImageView) itemView.findViewById(R.id.imageView);
-            nombre = (TextView) itemView.findViewById(R.id.tw_nombre);
+            url = (ImageView) itemView.findViewById(R.id.imageView);
+            nasa_id = (TextView) itemView.findViewById(R.id.tw_nombre);
         }
     }
 

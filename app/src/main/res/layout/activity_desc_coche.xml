@@ -9,7 +9,7 @@
     tools:context=".controller.DescPlaneta">
 
     <ImageView
-        android:id="@+id/imgCoche"
+        android:id="@+id/imgPlaneta"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -22,18 +22,18 @@
 
     <TextView
         style="@style/Title"
-        android:id="@+id/txtNombre"
+        android:id="@+id/txtTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/textDesc"
-        app:layout_constraintEnd_toEndOf="@+id/imgCoche"
-        app:layout_constraintStart_toStartOf="@+id/imgCoche"
-        app:layout_constraintTop_toBottomOf="@+id/imgCoche" />
+        app:layout_constraintBottom_toTopOf="@+id/texNasa_id"
+        app:layout_constraintEnd_toEndOf="@+id/imgPlaneta"
+        app:layout_constraintStart_toStartOf="@+id/imgPlaneta"
+        app:layout_constraintTop_toBottomOf="@+id/imgPlaneta" />
 
     <TextView
         style="@style/DescCoche"
-        android:id="@+id/textDesc"
+        android:id="@+id/texNasa_id"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
@@ -43,6 +43,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtNombre" />
+        app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

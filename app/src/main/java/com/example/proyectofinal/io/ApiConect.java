@@ -8,18 +8,18 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class ApiConect {
-    private static String URL_NASA = "https://images-api.nasa.gov/search?q=\"\"";
+    private static String URL_NASA = "https://images-api.nasa.gov/search?q=";
 
-    public static String getRequest() {
+    public static String getRequest(String nasa_id) {
         HttpURLConnection http = null;
         String content = null;
         try {
-            URL url = new URL(URL_NASA);
+            URL url = new URL(URL_NASA+nasa_id);
             http = (HttpURLConnection) url.openConnection();
             http.setRequestProperty("Content-Type", "application/json");
             http.setRequestProperty("Accept", "application/json");
             if (http.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                Log.d("Codigo","Codigo Correcto");
+                Log.d("Conexion","Conexion a api correcta");
                 StringBuilder sb = new StringBuilder();
                 BufferedReader reader = new BufferedReader(
                         new InputStreamReader(http.getInputStream()));
@@ -32,6 +32,7 @@ public class ApiConect {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            Log.d("Conexion","Error al conectar");
         } finally {
             if (http != null) http.disconnect();
         }

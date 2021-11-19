@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RecView extends AppCompatActivity {
-    ArrayList<Planeta> listCoches;
+    ArrayList<Planeta> listPlanetas;
     RecyclerView recyclerView;
     //Instancio adaptador de mi clase
     Adapter recyclerAdapter;
@@ -38,21 +38,21 @@ public class RecView extends AppCompatActivity {
 
         new URL().execute();
 
-        listCoches = new ArrayList<>();
-        recyclerAdapter = new Adapter(setCoches());
+        listPlanetas = new ArrayList<>();
+        recyclerAdapter = new Adapter(setPlanetas());
         /**Creo un setOnclickListener que al pulsarlo, lanzará una nueva actividad donde se mostrará,la imagen del coche, con su nombre
          y descipcion*/
         recyclerAdapter.setOnclickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(RecView.this, DescPlaneta.class);
-                String nombre = listCoches.get(recyclerView.getChildAdapterPosition(view)).getNasa_id();
-                String desc = listCoches.get(recyclerView.getChildAdapterPosition(view)).getTitulo();
-                int image = listCoches.get(recyclerView.getChildAdapterPosition(view)).getUrl();
+                String url = listPlanetas.get(recyclerView.getChildAdapterPosition(view)).getUrl();
+                String nasa_id = listPlanetas.get(recyclerView.getChildAdapterPosition(view)).getNasa_id();
+                String titulo = listPlanetas.get(recyclerView.getChildAdapterPosition(view)).getTitulo();
 
-                i.putExtra("nombre", nombre);
-                i.putExtra("desc", desc);
-                i.putExtra("imagen", image);
+                i.putExtra("nombre", nasa_id);
+                i.putExtra("desc", titulo);
+                i.putExtra("imagen", url);
 
                 startActivity(i);
             }
@@ -67,10 +67,10 @@ public class RecView extends AppCompatActivity {
     /**
      * Llena el array de objetos
      */
-    private List<Planeta> setCoches() {
-        listCoches = new ArrayList<Planeta>(listCoches);
-        listCoches.add(new Planeta(R.drawable.audi, "Audi R8", "Es un coche que es muy rapido y bonito"));
-        return listCoches;
+    private List<Planeta> setPlanetas() {
+        listPlanetas = new ArrayList<Planeta>(listPlanetas);
+
+        return listPlanetas;
     }
 
 
@@ -93,8 +93,8 @@ public class RecView extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... strings) {
-            String result;
-            result = ApiConect.getRequest();
+            String result, nasa_id="\"\"";
+            result = ApiConect.getRequest(nasa_id);
             return result;
         }
 
@@ -106,18 +106,19 @@ public class RecView extends AppCompatActivity {
                 if (s != null) {
                     JSONObject jsonObject = new JSONObject(s);
                     JSONArray jsonArray = jsonObject.getJSONArray("results");
+                    Log.d("items", "Procede");
 
-                    String href = "";
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        href = jsonArray.getJSONObject(i).getString("href");
-                        planetas.add(href);
+                    String items = "";
+                    for (int i = 0; i < 10; i++) {
+                        items = jsonArray.getJSONObject(i).getString("items");
+                        planetas.add(items);
                     }
-                    recyclerAdapter.notifyDataSetChanged();
-                    Log.d("Planetas", "Array: " + planetas.toString());
+
                 } else {
                     Toast.makeText(getApplicationContext(), "Problema al cargar los datos", Toast.LENGTH_SHORT).show();
                 }
             } catch (JSONException e) {
+                Log.e("json_error", "Error al leer JSON");
                 e.printStackTrace();
             }
         }

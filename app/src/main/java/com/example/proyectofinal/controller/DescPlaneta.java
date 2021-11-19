@@ -25,9 +25,9 @@ public class DescPlaneta extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        TextView txtNombre = findViewById(R.id.txtNombre);
-        TextView txtDesc = findViewById(R.id.textDesc);
-        ImageView imgCoche = findViewById(R.id.imgCoche);
+        TextView txtNombre = findViewById(R.id.txtTitle);
+        TextView txtDesc = findViewById(R.id.texNasa_id);
+        ImageView imgCoche = findViewById(R.id.imgPlaneta);
 
         Intent i = getIntent();
 

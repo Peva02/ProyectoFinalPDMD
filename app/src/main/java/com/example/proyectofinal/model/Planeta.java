@@ -2,22 +2,22 @@ package com.example.proyectofinal.model;
 
 public class Planeta {
     //URL_NASA + strUrl+"/"+strUrl+"~orig.jpg"
-    private int url;
+    private String url;
     private String nasa_id;
     private String titulo;
 
-    public Planeta(int url, String nasa_id, String titulo) {
-        this.url = url;
+    public Planeta(String nasa_id, String titulo) {
+        this.url = "https://images-assets.nasa.gov/image/"+nasa_id+"/"+nasa_id+"~thumb.jpg";
         this.nasa_id = nasa_id;
         this.titulo = titulo;
 
     }
 
-    public int getUrl() {
+    public String getUrl() {
         return url;
     }
 
-    public void setUrl(int url) {
+    public void setUrl(String url) {
         this.url = url;
     }
 
