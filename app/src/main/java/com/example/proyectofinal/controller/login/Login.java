@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import com.example.proyectofinal.R;
 import com.example.proyectofinal.controller.RecView;
+import com.orhanobut.logger.AndroidLogAdapter;
+import com.orhanobut.logger.Logger;
 import com.orm.SugarContext;
 import com.orm.SugarRecord;
 
@@ -31,6 +33,9 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        Logger.addLogAdapter(new AndroidLogAdapter());
+
         SugarContext.init(this);
         bd_user = BD.findById(BD.class, 1);
         /**Primero muestra la ventana de login*/
@@ -82,13 +87,14 @@ public class Login extends AppCompatActivity {
                     if (loginUser()) {
                         Intent i = new Intent(Login.this, RecView.class);
                         startActivity(i);
-                    }else{
+                    } else {
                         AlertDialog.Builder builder = new AlertDialog.Builder(Login.this);
                         builder.setTitle("Error");
                         builder.setMessage("El usuario no se encuentra registrado.\nPor favor, registrese primero.");
                         builder.setPositiveButton("Aceptar", null);
                         AlertDialog dialog = builder.create();
                         dialog.show();
+
                     }
                 }
             }
@@ -130,7 +136,7 @@ public class Login extends AppCompatActivity {
             bd_user.setPasswd(passwd);
 
             long save = bd_user.save();
-            Log.d("AddUser", "Usuario añadido");
+            Logger.t("AddUser").i( "Usuario añadido");
             Toast.makeText(getApplicationContext(), "Usuario registrado", Toast.LENGTH_SHORT).show();
         } catch (Exception ex) {
             AlertDialog.Builder builder = new AlertDialog.Builder(Login.this);
@@ -139,6 +145,8 @@ public class Login extends AppCompatActivity {
             builder.setPositiveButton("Aceptar", null);
             AlertDialog dialog = builder.create();
             dialog.show();
+            Logger.t("AddUser").e("El usuario se encuentra registrado");
+
         }
     }
 
@@ -157,24 +165,25 @@ public class Login extends AppCompatActivity {
                 }
             }
             if (userExist == 1) {
-                Log.d("LoginUser", "Usuario logeado");
+                Logger.t("LoginUser").i("Usuario logeado");
                 return true;
             } else {
                 throw new Exception();
             }
-        } catch (
-                Exception ex) {
+        } catch (Exception ex) {
+            Logger.t("LoginUser").e( "El usuario no se encuentra registrado");
             return false;
         }
     }
 
     private void checkCampos() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(Login.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Error");
         builder.setMessage("Compruebe que los campos estan rellenos");
         builder.setPositiveButton("Aceptar", null);
         AlertDialog dialog = builder.create();
         dialog.show();
+        Logger.t("CheckCampos").e("Los campos estan vacios");
     }
 
     private void showLogin() {

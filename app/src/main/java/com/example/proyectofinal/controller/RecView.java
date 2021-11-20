@@ -17,6 +17,7 @@ import com.example.proyectofinal.R;
 import com.example.proyectofinal.adapter.Adapter;
 import com.example.proyectofinal.io.ApiConect;
 import com.example.proyectofinal.model.Planeta;
+import com.orhanobut.logger.Logger;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -93,7 +94,7 @@ public class RecView extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... strings) {
-            String result, nasa_id="\"\"";
+            String result, nasa_id = "\"\"";
             result = ApiConect.getRequest(nasa_id);
             return result;
         }
@@ -101,13 +102,13 @@ public class RecView extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             try {
-                Log.d("Planetas", "Array: " + s);
+                /**Con la biblioteca PRETTY_LOGGER formatea da formato al JSON del log*/
+                Logger.t("Planetas").json(s);
 
                 if (s != null) {
                     JSONObject jsonObject = new JSONObject(s);
                     JSONArray jsonArray = jsonObject.getJSONArray("results");
-                    Log.d("items", "Procede");
-
+                    /**Aqui da fallo al leer objetos del json*/
                     String items = "";
                     for (int i = 0; i < 10; i++) {
                         items = jsonArray.getJSONObject(i).getString("items");
@@ -118,7 +119,7 @@ public class RecView extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Problema al cargar los datos", Toast.LENGTH_SHORT).show();
                 }
             } catch (JSONException e) {
-                Log.e("json_error", "Error al leer JSON");
+                Logger.t("json_error").e("Error al leer JSON");
                 e.printStackTrace();
             }
         }

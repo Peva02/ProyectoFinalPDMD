@@ -26,7 +26,7 @@ public class Preferences extends AppCompatActivity {
     }
 
     /**
-     * Indica que va a sudecer cuando se pulse cada botón
+     * Boton de retroceso
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
