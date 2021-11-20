@@ -117,11 +117,12 @@ public class Login extends AppCompatActivity {
      */
     private void addUser() {
         /**Creamos una relacion de variables con la interfaz*/
-        String user = findViewById(R.id.user).toString();
-        String passwd = findViewById(R.id.passwd).toString();
+        EditText user = findViewById(R.id.user);
+        EditText passwd = findViewById(R.id.passwd);
 
         /**Comrpobamos si el usuario exixte*/
-        List<BD> usuarios = SugarRecord.find(BD.class, "user=? and passwd=?", user, passwd);
+        Logger.t("AddUser").i(user.getText().toString() + " " + passwd.getText().toString());
+        List<BD> usuarios = BD.find(BD.class, "user=? and passwd=?", user.getText().toString(), passwd.getText().toString());
 
         try {
             for (BD usuario : usuarios) {
@@ -132,11 +133,11 @@ public class Login extends AppCompatActivity {
 
             /**Añadimos el ususario y la contraseña al objeto de la base de datos*/
             bd_user = new BD();
-            bd_user.setUser(user);
-            bd_user.setPasswd(passwd);
+            bd_user.setUser(user.getText().toString());
+            bd_user.setPasswd(passwd.getText().toString());
 
             long save = bd_user.save();
-            Logger.t("AddUser").i( "Usuario añadido");
+            Logger.t("AddUser").i("Usuario " + save + " añadido");
             Toast.makeText(getApplicationContext(), "Usuario registrado", Toast.LENGTH_SHORT).show();
         } catch (Exception ex) {
             AlertDialog.Builder builder = new AlertDialog.Builder(Login.this);
@@ -152,15 +153,16 @@ public class Login extends AppCompatActivity {
 
     private boolean loginUser() {
         /**Creamos una relacion de variables con la interfaz*/
-        String user = findViewById(R.id.user).toString();
-        String passwd = findViewById(R.id.passwd).toString();
+        EditText user = findViewById(R.id.user);
+        EditText passwd = findViewById(R.id.passwd);
 
         /**Comrpobamos si el usuario exixte*/
-        List<BD> usuarios = SugarRecord.find(BD.class, "user=? and passwd=?", user, passwd);
+        Logger.t("LoginUser").i(user.getText().toString() + " " + passwd.getText().toString());
+        List<BD> usuarios = BD.find(BD.class, "user=? and passwd=?", user.getText().toString(), passwd.getText().toString());
         int userExist = 0;
         try {
             for (BD usuario : usuarios) {
-                if (usuario.getUser().equals(user) && usuario.getPasswd().equals(passwd)) {
+                if (usuario.getUser().equals(user.getText().toString()) && usuario.getPasswd().equals(passwd.getText().toString())) {
                     userExist = 1;
                 }
             }
@@ -171,7 +173,7 @@ public class Login extends AppCompatActivity {
                 throw new Exception();
             }
         } catch (Exception ex) {
-            Logger.t("LoginUser").e( "El usuario no se encuentra registrado");
+            Logger.t("LoginUser").e("El usuario no se encuentra registrado");
             return false;
         }
     }

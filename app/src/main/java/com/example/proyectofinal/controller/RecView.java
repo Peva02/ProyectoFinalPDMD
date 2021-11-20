@@ -107,7 +107,10 @@ public class RecView extends AppCompatActivity {
 
                 if (s != null) {
                     JSONObject jsonObject = new JSONObject(s);
-                    JSONArray jsonArray = jsonObject.getJSONArray("results");
+                    Logger.t("json_debug").json(jsonObject.toString());
+                    JSONArray jsonArray = jsonObject.getJSONArray("collection");
+                    Logger.t("json_debug").d("Lee results");
+
                     /**Aqui da fallo al leer objetos del json*/
                     String items = "";
                     for (int i = 0; i < 10; i++) {
@@ -119,7 +122,7 @@ public class RecView extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Problema al cargar los datos", Toast.LENGTH_SHORT).show();
                 }
             } catch (JSONException e) {
-                Logger.t("json_error").e("Error al leer JSON");
+                Logger.t("json_error").e("Error al leer JSON"+e.getCause());
                 e.printStackTrace();
             }
         }
