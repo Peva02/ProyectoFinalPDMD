@@ -101,7 +101,7 @@ public class RecView extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             try {
-                Log.e("Planetas", "Array: " + s);
+                Log.d("Planetas", "Array: " + s);
 
                 if (s != null) {
                     JSONObject jsonObject = new JSONObject(s);
