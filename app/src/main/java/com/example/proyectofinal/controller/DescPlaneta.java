@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.proyectofinal.R;
 
 public class DescPlaneta extends AppCompatActivity {
@@ -25,24 +26,27 @@ public class DescPlaneta extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        TextView txtNombre = findViewById(R.id.txtTitle);
-        TextView txtDesc = findViewById(R.id.texNasa_id);
-        ImageView imgCoche = findViewById(R.id.imgPlaneta);
+        TextView txtTitle = findViewById(R.id.txtTitle);
+        TextView texNasa_id = findViewById(R.id.texNasa_id);
+        ImageView imagen = findViewById(R.id.imgPlaneta);
 
         Intent i = getIntent();
 
-        String nombre = i.getStringExtra("nombre");
-        txtNombre.setText(nombre.toUpperCase());
+        String title = i.getStringExtra("title");
+        txtTitle.setText(title.toUpperCase());
 
-        String desc = i.getStringExtra("desc");
-        txtDesc.setText(desc);
+        String nasa_id = i.getStringExtra("nasa_id");
+        texNasa_id.setText(nasa_id);
 
-        int image = i.getIntExtra("imagen", -1);
-        if (image == -1) {
+        /*String imagen = i.getStringExtra("imagen");
+        if (imagen == null) {
             Toast.makeText(getApplicationContext(), "Error al cargar las imagenes", Toast.LENGTH_SHORT).show();
         } else {
-            imgCoche.setImageResource(image);
-        }
+            Glide.with(RecView)
+                    .load(imagen)
+                    .into(holder.);
+            imagen.setImageResource(imagen);
+        }*/
     }
 
     /**

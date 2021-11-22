@@ -1,5 +1,6 @@
 package com.example.proyectofinal.adapter;
 
+import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,17 +11,21 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
+import com.bumptech.glide.Glide;
 import com.example.proyectofinal.R;
 import com.example.proyectofinal.model.Planeta;
+import com.orhanobut.logger.Logger;
 
 import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.RecyclerHolder> implements View.OnClickListener {
     List<Planeta> listImagenes;
     private View.OnClickListener listener;
+    private Activity RecView;
 
-    public Adapter(List<Planeta> listImagenes) {
+    public Adapter(List<Planeta> listImagenes, Activity RecView) {
         this.listImagenes = listImagenes;
+        this.RecView = RecView;
     }
 
     @NonNull
@@ -31,7 +36,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.RecyclerHolder> implem
     public RecyclerHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_items, parent, false);
         RecyclerHolder recyclerHolder = new RecyclerHolder(view);
-
         /**le pasamos la vista el nuevo metodo creado*/
         view.setOnClickListener(listener);
 
@@ -44,11 +48,11 @@ public class Adapter extends RecyclerView.Adapter<Adapter.RecyclerHolder> implem
      * */
     public void onBindViewHolder(@NonNull RecyclerHolder holder, int position) {
         Planeta planeta = listImagenes.get(position);
-        /**============================
-         * AQUI HAY QUE METER LA IMAGEN DEL PLANETA A APRTIR DE LA URL
-         * =======================*/
-        holder.url.setImageResource(R.drawable.audi);
-        holder.nasa_id.setText(planeta.getNasa_id());
+        Logger.t("URL_PLANETA").d(planeta.getUrl());
+        Glide.with(RecView)
+                .load(planeta.getUrl())
+                .into(holder.imagen);
+        holder.title.setText(planeta.getTitulo());
     }
 
     @Override
@@ -75,13 +79,13 @@ public class Adapter extends RecyclerView.Adapter<Adapter.RecyclerHolder> implem
      * Recrea los elementos de la vista del layout creado(custom_items.xml)
      */
     public class RecyclerHolder extends ViewHolder {
-        ImageView url;
-        TextView nasa_id;
+        ImageView imagen;
+        TextView title;
 
         public RecyclerHolder(@NonNull View itemView) {
             super(itemView);
-            url = (ImageView) itemView.findViewById(R.id.imageView);
-            nasa_id = (TextView) itemView.findViewById(R.id.tw_nombre);
+            imagen = (ImageView) itemView.findViewById(R.id.imgPlanetas);
+            title = (TextView) itemView.findViewById(R.id.tw_title);
         }
     }
 

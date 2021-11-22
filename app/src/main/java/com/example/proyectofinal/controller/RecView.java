@@ -40,7 +40,7 @@ public class RecView extends AppCompatActivity {
         new URL().execute();
 
         listPlanetas = new ArrayList<>();
-        recyclerAdapter = new Adapter(setPlanetas());
+        recyclerAdapter = new Adapter(listPlanetas, this);
         /**Creo un setOnclickListener que al pulsarlo, lanzará una nueva actividad donde se mostrará,la imagen del coche, con su nombre
          y descipcion*/
         recyclerAdapter.setOnclickListener(new View.OnClickListener() {
@@ -51,8 +51,8 @@ public class RecView extends AppCompatActivity {
                 String nasa_id = listPlanetas.get(recyclerView.getChildAdapterPosition(view)).getNasa_id();
                 String titulo = listPlanetas.get(recyclerView.getChildAdapterPosition(view)).getTitulo();
 
-                i.putExtra("nombre", nasa_id);
-                i.putExtra("desc", titulo);
+                i.putExtra("nasa_id", nasa_id);
+                i.putExtra("title", titulo);
                 i.putExtra("imagen", url);
 
                 startActivity(i);
@@ -64,16 +64,6 @@ public class RecView extends AppCompatActivity {
         recyclerView.setAdapter(recyclerAdapter);
         recyclerView.setLayoutManager(glayout);
     }
-
-    /**
-     * Llena el array de objetos
-     */
-    private List<Planeta> setPlanetas() {
-        listPlanetas = new ArrayList<Planeta>(listPlanetas);
-
-        return listPlanetas;
-    }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -90,8 +80,6 @@ public class RecView extends AppCompatActivity {
 
 
     public class URL extends AsyncTask<String, Void, String> {
-        private ArrayList<String> planetas;
-
         @Override
         protected String doInBackground(String... strings) {
             String result, nasa_id = "\"\"";
@@ -100,29 +88,36 @@ public class RecView extends AppCompatActivity {
         }
 
         @Override
+        /**
+         * Saca los valores necesarios para crear el objeto y rellenar el array de objetos
+         */
         protected void onPostExecute(String s) {
             try {
                 /**Con la biblioteca PRETTY_LOGGER formatea da formato al JSON del log*/
                 Logger.t("Planetas").json(s);
-
+                String nasa_id, title;
                 if (s != null) {
                     JSONObject jsonObject = new JSONObject(s);
-                    Logger.t("json_debug").json(jsonObject.toString());
-                    JSONArray jsonArray = jsonObject.getJSONArray("collection");
-                    Logger.t("json_debug").d("Lee results");
-
-                    /**Aqui da fallo al leer objetos del json*/
-                    String items = "";
+                    JSONObject collection = jsonObject.getJSONObject("collection");
+                    JSONArray items = collection.getJSONArray("items");
                     for (int i = 0; i < 10; i++) {
-                        items = jsonArray.getJSONObject(i).getString("items");
-                        planetas.add(items);
+                        JSONArray data = items.getJSONObject(i).getJSONArray("data");
+                        for (int z = 0; z < data.length(); z++) {
+                            nasa_id = data.getJSONObject(z).getString("nasa_id");
+                            title = data.getJSONObject(z).getString("title");
+
+                            Logger.t("titulos").i(nasa_id);
+                            listPlanetas.add(new Planeta(nasa_id, title));
+                            Logger.t("json_error").e(listPlanetas.get(z).getUrl());
+                        }
                     }
+
 
                 } else {
                     Toast.makeText(getApplicationContext(), "Problema al cargar los datos", Toast.LENGTH_SHORT).show();
                 }
             } catch (JSONException e) {
-                Logger.t("json_error").e("Error al leer JSON"+e.getCause());
+                Logger.t("json_error").e("Error al leer JSON: " + e.getCause());
                 e.printStackTrace();
             }
         }
