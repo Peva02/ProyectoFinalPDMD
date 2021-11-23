@@ -1,6 +1,8 @@
 package com.example.proyectofinal.adapter;
 
 import android.app.Activity;
+import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,11 +23,11 @@ import java.util.List;
 public class Adapter extends RecyclerView.Adapter<Adapter.RecyclerHolder> implements View.OnClickListener {
     List<Planeta> listImagenes;
     private View.OnClickListener listener;
-    private Activity RecView;
+    private Context context;
 
     public Adapter(List<Planeta> listImagenes, Activity RecView) {
         this.listImagenes = listImagenes;
-        this.RecView = RecView;
+        this.context = RecView;
     }
 
     @NonNull
@@ -38,7 +40,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.RecyclerHolder> implem
         RecyclerHolder recyclerHolder = new RecyclerHolder(view);
         /**le pasamos la vista el nuevo metodo creado*/
         view.setOnClickListener(listener);
-
         return recyclerHolder;
     }
 
@@ -49,7 +50,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.RecyclerHolder> implem
     public void onBindViewHolder(@NonNull RecyclerHolder holder, int position) {
         Planeta planeta = listImagenes.get(position);
         Logger.t("URL_PLANETA").d(planeta.getUrl());
-        Glide.with(RecView)
+        Glide.with(context)
                 .load(planeta.getUrl())
                 .into(holder.imagen);
         holder.title.setText(planeta.getTitulo());

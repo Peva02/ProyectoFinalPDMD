@@ -1,9 +1,5 @@
 package com.example.proyectofinal.io;
 
-import android.util.Log;
-
-import com.orhanobut.logger.Logger;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -16,12 +12,11 @@ public class ApiConect {
         HttpURLConnection http = null;
         String content = null;
         try {
-            URL url = new URL(URL_NASA+nasa_id);
+            URL url = new URL(URL_NASA + nasa_id);
             http = (HttpURLConnection) url.openConnection();
             http.setRequestProperty("Content-Type", "application/json");
             http.setRequestProperty("Accept", "application/json");
             if (http.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                Logger.t("Conexion").i("Conexion a api correcta");
                 StringBuilder sb = new StringBuilder();
                 BufferedReader reader = new BufferedReader(
                         new InputStreamReader(http.getInputStream()));
@@ -34,7 +29,6 @@ public class ApiConect {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            Logger.t("Conexion").e("Error al conectar");
         } finally {
             if (http != null) http.disconnect();
         }

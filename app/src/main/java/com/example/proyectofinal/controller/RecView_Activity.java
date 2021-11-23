@@ -3,7 +3,6 @@ package com.example.proyectofinal.controller;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,16 +16,14 @@ import com.example.proyectofinal.R;
 import com.example.proyectofinal.adapter.Adapter;
 import com.example.proyectofinal.io.ApiConect;
 import com.example.proyectofinal.model.Planeta;
-import com.orhanobut.logger.Logger;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class RecView extends AppCompatActivity {
+public class RecView_Activity extends AppCompatActivity {
     ArrayList<Planeta> listPlanetas;
     RecyclerView recyclerView;
     //Instancio adaptador de mi clase
@@ -37,6 +34,7 @@ public class RecView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rec_view);
 
+        /**Ejecuto la consulta*/
         new URL().execute();
 
         listPlanetas = new ArrayList<>();
@@ -46,14 +44,14 @@ public class RecView extends AppCompatActivity {
         recyclerAdapter.setOnclickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(RecView.this, DescPlaneta.class);
+                Intent i = new Intent(RecView_Activity.this, DescPlaneta_Activity.class);
                 String url = listPlanetas.get(recyclerView.getChildAdapterPosition(view)).getUrl();
                 String nasa_id = listPlanetas.get(recyclerView.getChildAdapterPosition(view)).getNasa_id();
                 String titulo = listPlanetas.get(recyclerView.getChildAdapterPosition(view)).getTitulo();
 
                 i.putExtra("nasa_id", nasa_id);
                 i.putExtra("title", titulo);
-                i.putExtra("imagen", url);
+                i.putExtra("url_imagen", url);
 
                 startActivity(i);
             }
@@ -73,7 +71,7 @@ public class RecView extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent i = new Intent(RecView.this, Preferences.class);
+        Intent i = new Intent(RecView_Activity.this, Preferences_Activity.class);
         startActivity(i);
         return true;
     }
@@ -93,8 +91,6 @@ public class RecView extends AppCompatActivity {
          */
         protected void onPostExecute(String s) {
             try {
-                /**Con la biblioteca PRETTY_LOGGER formatea da formato al JSON del log*/
-                Logger.t("Planetas").json(s);
                 String nasa_id, title;
                 if (s != null) {
                     JSONObject jsonObject = new JSONObject(s);
@@ -106,19 +102,15 @@ public class RecView extends AppCompatActivity {
                             nasa_id = data.getJSONObject(z).getString("nasa_id");
                             title = data.getJSONObject(z).getString("title");
 
-                            Logger.t("titulos").i(nasa_id);
                             listPlanetas.add(new Planeta(nasa_id, title));
-                            Logger.t("json_error").e(listPlanetas.get(z).getUrl());
                         }
                     }
-
-
+                    recyclerAdapter.notifyDataSetChanged();
                 } else {
-                    Toast.makeText(getApplicationContext(), "Problema al cargar los datos", Toast.LENGTH_SHORT).show();
+                    throw new JSONException("Error");
                 }
             } catch (JSONException e) {
-                Logger.t("json_error").e("Error al leer JSON: " + e.getCause());
-                e.printStackTrace();
+                Toast.makeText(getApplicationContext(), "Problema al cargar los datos", Toast.LENGTH_SHORT).show();
             }
         }
     }

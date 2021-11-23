@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,11 +12,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.proyectofinal.R;
-import com.example.proyectofinal.controller.RecView;
+import com.example.proyectofinal.controller.RecView_Activity;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 import com.orm.SugarContext;
-import com.orm.SugarRecord;
 
 import java.util.List;
 
@@ -33,9 +31,6 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        Logger.addLogAdapter(new AndroidLogAdapter());
-
         SugarContext.init(this);
         bd_user = BD.findById(BD.class, 1);
         /**Primero muestra la ventana de login*/
@@ -85,7 +80,7 @@ public class Login extends AppCompatActivity {
                     checkCampos();
                 } else {
                     if (loginUser()) {
-                        Intent i = new Intent(Login.this, RecView.class);
+                        Intent i = new Intent(Login.this, RecView_Activity.class);
                         startActivity(i);
                     } else {
                         AlertDialog.Builder builder = new AlertDialog.Builder(Login.this);
@@ -121,7 +116,6 @@ public class Login extends AppCompatActivity {
         EditText passwd = findViewById(R.id.passwd);
 
         /**Comrpobamos si el usuario exixte*/
-        Logger.t("AddUser").i(user.getText().toString() + " " + passwd.getText().toString());
         List<BD> usuarios = BD.find(BD.class, "user=? and passwd=?", user.getText().toString(), passwd.getText().toString());
 
         try {
@@ -137,7 +131,6 @@ public class Login extends AppCompatActivity {
             bd_user.setPasswd(passwd.getText().toString());
 
             long save = bd_user.save();
-            Logger.t("AddUser").i("Usuario " + save + " añadido");
             Toast.makeText(getApplicationContext(), "Usuario registrado", Toast.LENGTH_SHORT).show();
         } catch (Exception ex) {
             AlertDialog.Builder builder = new AlertDialog.Builder(Login.this);
@@ -146,7 +139,6 @@ public class Login extends AppCompatActivity {
             builder.setPositiveButton("Aceptar", null);
             AlertDialog dialog = builder.create();
             dialog.show();
-            Logger.t("AddUser").e("El usuario se encuentra registrado");
 
         }
     }
@@ -157,7 +149,6 @@ public class Login extends AppCompatActivity {
         EditText passwd = findViewById(R.id.passwd);
 
         /**Comrpobamos si el usuario exixte*/
-        Logger.t("LoginUser").i(user.getText().toString() + " " + passwd.getText().toString());
         List<BD> usuarios = BD.find(BD.class, "user=? and passwd=?", user.getText().toString(), passwd.getText().toString());
         int userExist = 0;
         try {
@@ -167,13 +158,11 @@ public class Login extends AppCompatActivity {
                 }
             }
             if (userExist == 1) {
-                Logger.t("LoginUser").i("Usuario logeado");
                 return true;
             } else {
                 throw new Exception();
             }
         } catch (Exception ex) {
-            Logger.t("LoginUser").e("El usuario no se encuentra registrado");
             return false;
         }
     }
@@ -185,7 +174,6 @@ public class Login extends AppCompatActivity {
         builder.setPositiveButton("Aceptar", null);
         AlertDialog dialog = builder.create();
         dialog.show();
-        Logger.t("CheckCampos").e("Los campos estan vacios");
     }
 
     private void showLogin() {

@@ -20,13 +20,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".controller.Preferences"
+            android:name=".controller.Preferences_Activity"
             android:exported="true" />
         <activity
-            android:name=".controller.DescPlaneta"
+            android:name=".controller.DescPlaneta_Activity"
             android:exported="true" />
         <activity
-            android:name=".controller.RecView"
+            android:name=".controller.RecView_Activity"
             android:exported="true">
             <!--
              android:theme="@style/Theme.AppCompat.NoActionBar" elimina el actionBar de solo

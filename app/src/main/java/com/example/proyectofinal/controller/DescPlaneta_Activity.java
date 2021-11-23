@@ -3,23 +3,29 @@ package com.example.proyectofinal.controller;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Adapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.proyectofinal.R;
+import com.example.proyectofinal.io.ApiConect;
+import com.orhanobut.logger.Logger;
 
-public class DescPlaneta extends AppCompatActivity {
-
+public class DescPlaneta_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_desc_coche);
+
         /**Añadir boton en actionBar para volver al Home activity*/
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -28,7 +34,9 @@ public class DescPlaneta extends AppCompatActivity {
 
         TextView txtTitle = findViewById(R.id.txtTitle);
         TextView texNasa_id = findViewById(R.id.texNasa_id);
-        ImageView imagen = findViewById(R.id.imgPlaneta);
+        ImageView urlImagen = findViewById(R.id.imgPlaneta);
+
+        /**Busco la url de la imagen en concreto*/
 
         Intent i = getIntent();
 
@@ -38,15 +46,13 @@ public class DescPlaneta extends AppCompatActivity {
         String nasa_id = i.getStringExtra("nasa_id");
         texNasa_id.setText(nasa_id);
 
-        /*String imagen = i.getStringExtra("imagen");
-        if (imagen == null) {
+        if (urlImagen == null) {
             Toast.makeText(getApplicationContext(), "Error al cargar las imagenes", Toast.LENGTH_SHORT).show();
         } else {
-            Glide.with(RecView)
-                    .load(imagen)
-                    .into(holder.);
-            imagen.setImageResource(imagen);
-        }*/
+            Glide.with(this).
+                    load(i.getStringExtra("url_imagen")).
+                    into(urlImagen);
+        }
     }
 
     /**
@@ -69,12 +75,12 @@ public class DescPlaneta extends AppCompatActivity {
                 onBackPressed();
                 return true;
             case R.id.ajustes:
-                Intent i = new Intent(DescPlaneta.this, Preferences.class);
+                Intent i = new Intent(DescPlaneta_Activity.this, Preferences_Activity.class);
                 startActivity(i);
                 return true;
         }
         return false;
     }
-
 }
+
 

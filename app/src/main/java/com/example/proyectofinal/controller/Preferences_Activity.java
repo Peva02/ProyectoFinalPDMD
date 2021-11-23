@@ -10,7 +10,7 @@ import android.view.MenuItem;
 import com.example.proyectofinal.R;
 import com.example.proyectofinal.fragments.Fragment;
 
-public class Preferences extends AppCompatActivity {
+public class Preferences_Activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
