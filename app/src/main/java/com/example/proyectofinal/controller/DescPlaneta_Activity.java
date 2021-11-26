@@ -3,28 +3,22 @@ package com.example.proyectofinal.controller;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Adapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.proyectofinal.R;
-import com.example.proyectofinal.io.ApiConect;
-import com.orhanobut.logger.Logger;
 
 public class DescPlaneta_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_desc_coche);
+        setContentView(R.layout.activity_desc_planeta);
 
         /**Añadir boton en actionBar para volver al Home activity*/
         ActionBar actionBar = getSupportActionBar();

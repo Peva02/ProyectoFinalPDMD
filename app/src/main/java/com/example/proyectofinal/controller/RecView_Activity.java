@@ -96,7 +96,7 @@ public class RecView_Activity extends AppCompatActivity {
                     JSONObject jsonObject = new JSONObject(s);
                     JSONObject collection = jsonObject.getJSONObject("collection");
                     JSONArray items = collection.getJSONArray("items");
-                    for (int i = 0; i < 10; i++) {
+                    for (int i = 0; i < 50; i++) {
                         JSONArray data = items.getJSONObject(i).getJSONArray("data");
                         for (int z = 0; z < data.length(); z++) {
                             nasa_id = data.getJSONObject(z).getString("nasa_id");

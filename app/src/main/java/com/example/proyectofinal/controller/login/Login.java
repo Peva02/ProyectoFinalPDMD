@@ -117,20 +117,16 @@ public class Login extends AppCompatActivity {
 
         /**Comrpobamos si el usuario exixte*/
         List<BD> usuarios = BD.find(BD.class, "user=? and passwd=?", user.getText().toString(), passwd.getText().toString());
-
         try {
-            for (BD usuario : usuarios) {
-                if (usuario.getUser().equals(user) && usuario.getPasswd().equals(passwd)) {
-                    throw new Exception();
-                }
-            }
+            if (usuarios.size() != 0)
+                throw new Exception();
+
 
             /**Añadimos el ususario y la contraseña al objeto de la base de datos*/
             bd_user = new BD();
             bd_user.setUser(user.getText().toString());
             bd_user.setPasswd(passwd.getText().toString());
-
-            long save = bd_user.save();
+            bd_user.save();
             Toast.makeText(getApplicationContext(), "Usuario registrado", Toast.LENGTH_SHORT).show();
         } catch (Exception ex) {
             AlertDialog.Builder builder = new AlertDialog.Builder(Login.this);
