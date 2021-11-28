@@ -195,13 +195,16 @@ public class Login extends AppCompatActivity {
         findViewById(R.id.cancel).setVisibility(View.VISIBLE);
     }
 
+    /**
+     * Carga las preferencias y pone los valores por defecto en el login, sin tener encuneta los espacios
+     */
     public void loadPreferences() {
         EditText user = findViewById(R.id.user);
         EditText passwd = findViewById(R.id.passwd);
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(Login.this);
         String usuario = sharedPreferences.getString("user", "");
         String password = sharedPreferences.getString("password", "");
-        user.setText(usuario);
-        passwd.setText(password);
+        user.setText(usuario.trim());
+        passwd.setText(password.trim());
     }
 }

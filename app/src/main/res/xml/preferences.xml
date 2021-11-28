@@ -4,13 +4,13 @@
     <PreferenceCategory android:title="AJUSTES DE USUARIO">
         <EditTextPreference
             android:foregroundTint="#D81B60"
-            android:icon="?android:attr/fingerprintAuthDrawable"
             android:key="user"
             android:selectAllOnFocus="true"
             android:singleLine="true"
             android:title="Usuario"
             app:summary="Usuario por defecto" />
         <EditTextPreference
+            android:icon="?android:attr/fingerprintAuthDrawable"
             android:key="password"
             android:selectAllOnFocus="true"
             android:singleLine="true"
