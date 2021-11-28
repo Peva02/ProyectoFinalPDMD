@@ -23,7 +23,7 @@
         android:id="@+id/tw_title"
         style="@style/TextRecView"
         android:layout_width="0dp"
-        android:layout_height="20dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"

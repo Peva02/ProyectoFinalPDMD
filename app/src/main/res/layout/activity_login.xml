@@ -62,7 +62,7 @@
 
     <TextView
         android:id="@+id/add"
-        style="@style/DescCoche"
+        style="@style/DescPlaneta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -84,7 +84,7 @@
 
     <TextView
         android:id="@+id/cancel"
-        style="@style/DescCoche"
+        style="@style/DescPlaneta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"

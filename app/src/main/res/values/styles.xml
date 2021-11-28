@@ -1,18 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--Hoja de estilos personalizada-->
+<?xml version="1.0" encoding="utf-8"?><!--Hoja de estilos personalizada-->
 <resources>
+
     <style name="Title" parent="TextAppearance.AppCompat">
         <item name="android:textColor">@color/red</item>
         <item name="android:textAlignment">center</item>
         <item name="android:textSize">34sp</item>
         <item name="android:fontFamily">serif-serif-black</item>
+        <item name="android:shadowColor">#fff</item>
+        <item name="android:shadowRadius">30</item>
     </style>
 
-    <style name="DescCoche" parent="TextAppearance.AppCompat">
+    <style name="DescPlaneta" parent="TextAppearance.AppCompat">
         <item name="android:textColor">@color/white</item>
         <item name="android:textAlignment">textStart</item>
         <item name="android:textSize">16sp</item>
-        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:fontFamily">sans-serif-black</item>
     </style>
 
     <style name="TextRecView" parent="TextAppearance.AppCompat">
@@ -21,6 +23,7 @@
         <item name="android:textSize">16sp</item>
         <item name="android:fontFamily">sans-serif-black</item>
     </style>
+
     <style name="Button" parent="@android:style/Widget.Button">
         <item name="android:textColor">@color/white</item>
         <item name="android:textAlignment">center</item>
@@ -29,7 +32,8 @@
         <item name="android:background">@drawable/border_btn</item>
         <item name="android:radius">20sp</item>
     </style>
+
     <style name="BGConstraint">
-        <item name="android:background">@color/blue</item>
+        <item name="android:background">@drawable/fondo</item>
     </style>
 </resources>
