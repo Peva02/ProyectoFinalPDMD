@@ -7,7 +7,7 @@ import androidx.preference.PreferenceFragmentCompat;
 
 import com.example.proyectofinal.R;
 
-public class Fragment extends PreferenceFragmentCompat {
+public class Preferencias extends PreferenceFragmentCompat {
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {

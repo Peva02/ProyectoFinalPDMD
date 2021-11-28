@@ -2,8 +2,10 @@ package com.example.proyectofinal.controller.login;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -31,6 +33,7 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        loadPreferences();
         SugarContext.init(this);
         bd_user = BD.findById(BD.class, 1);
         /**Primero muestra la ventana de login*/
@@ -62,14 +65,14 @@ public class Login extends AppCompatActivity {
                     /**Vacio los campos y vuelo a mostrar la interfaz de login*/
                     user.setText(null);
                     passwd.setText(null);
+                    loadPreferences();
                     showLogin();
                 }
-
             }
         });
 
 
-        /**Si el login es correcto, muestra el reciclerView de los coches*/
+        /**Si el login es correcto, muestra el reciclerView de los Planetas*/
         Button login = findViewById(R.id.login);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,6 +109,12 @@ public class Login extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onRestart() {
+        super.onRestart();
+        loadPreferences();
+    }
+
 
     /**
      * Metodo para guardar usuarios en la base de datos. Comprueba que el usuario y la contraseña no existe, si existe muestra un mensaje de error.
@@ -135,7 +144,6 @@ public class Login extends AppCompatActivity {
             builder.setPositiveButton("Aceptar", null);
             AlertDialog dialog = builder.create();
             dialog.show();
-
         }
     }
 
@@ -185,5 +193,15 @@ public class Login extends AppCompatActivity {
         findViewById(R.id.add).setVisibility(View.GONE);
         findViewById(R.id.register).setVisibility(View.VISIBLE);
         findViewById(R.id.cancel).setVisibility(View.VISIBLE);
+    }
+
+    public void loadPreferences() {
+        EditText user = findViewById(R.id.user);
+        EditText passwd = findViewById(R.id.passwd);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(Login.this);
+        String usuario = sharedPreferences.getString("user", "");
+        String password = sharedPreferences.getString("password", "");
+        user.setText(usuario);
+        passwd.setText(password);
     }
 }

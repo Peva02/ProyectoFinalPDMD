@@ -3,12 +3,12 @@ package com.example.proyectofinal.controller;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.proyectofinal.R;
-import com.example.proyectofinal.fragments.Fragment;
+import com.example.proyectofinal.controller.login.Login;
+import com.example.proyectofinal.fragments.Preferencias;
 
 public class Preferences_Activity extends AppCompatActivity {
 
@@ -16,7 +16,7 @@ public class Preferences_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preferences);
-        getSupportFragmentManager().beginTransaction().replace(R.id.layoutPreferences, new Fragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.layoutPreferences, new Preferencias()).commit();
 
         /**Añadir boton en actionBar para volver al Home activity*/
         ActionBar actionBar = getSupportActionBar();
