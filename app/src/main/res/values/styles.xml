@@ -6,8 +6,8 @@
         <item name="android:textAlignment">center</item>
         <item name="android:textSize">34sp</item>
         <item name="android:fontFamily">serif-serif-black</item>
-        <item name="android:shadowColor">#fff</item>
-        <item name="android:shadowRadius">30</item>
+        <item name="android:shadowColor">#ff0000</item>
+        <item name="android:shadowRadius">10</item>
     </style>
 
     <style name="DescPlaneta" parent="TextAppearance.AppCompat">

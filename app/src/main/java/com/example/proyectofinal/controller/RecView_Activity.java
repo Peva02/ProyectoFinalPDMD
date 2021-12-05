@@ -1,6 +1,7 @@
 package com.example.proyectofinal.controller;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.ActionMode;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,6 +30,9 @@ public class RecView_Activity extends AppCompatActivity {
     RecyclerView recyclerView;
     //Instancio adaptador de mi clase
     Adapter recyclerAdapter;
+    private Adapter.AdapterClickListener listener;
+    private androidx.appcompat.view.ActionMode mActionMode;
+    public int posicion = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,14 +41,25 @@ public class RecView_Activity extends AppCompatActivity {
 
         /**Ejecuto la consulta*/
         new URL().execute();
-
+        setOnClickListener();
         listPlanetas = new ArrayList<>();
-        recyclerAdapter = new Adapter(listPlanetas, this);
-        /**Creo un setOnclickListener que al pulsarlo, lanzará una nueva actividad donde se mostrará,la imagen del coche, con su nombre
-         y descipcion*/
-        recyclerAdapter.setOnclickListener(new View.OnClickListener() {
+        recyclerAdapter = new Adapter(listPlanetas, listener);
+
+        /**Creo un GridLayoutManager de tal manera que se muestren dos objetos por fila*/
+        GridLayoutManager glayout = new GridLayoutManager(this, 2);
+        recyclerView = findViewById(R.id.recView);
+        recyclerView.setAdapter(recyclerAdapter);
+        recyclerView.setLayoutManager(glayout);
+    }
+
+    /**
+     * Creo un setOnclickListener que al pulsarlo, lanzará una nueva actividad donde se mostrará,la imagen del coche, con su nombre
+     * y descipcion
+     */
+    private void setOnClickListener() {
+        listener = new Adapter.AdapterClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view, int pos) {
                 Intent i = new Intent(RecView_Activity.this, DescPlaneta_Activity.class);
                 String url = listPlanetas.get(recyclerView.getChildAdapterPosition(view)).getUrl();
                 String nasa_id = listPlanetas.get(recyclerView.getChildAdapterPosition(view)).getNasa_id();
@@ -55,20 +71,33 @@ public class RecView_Activity extends AppCompatActivity {
 
                 startActivity(i);
             }
-        });
-        /**Creo un GridLayoutManager de tal manera que se muestren dos objetos por fila*/
-        GridLayoutManager glayout = new GridLayoutManager(this, 2);
-        recyclerView = findViewById(R.id.recView);
-        recyclerView.setAdapter(recyclerAdapter);
-        recyclerView.setLayoutManager(glayout);
+
+            @Override
+            public boolean onLongClick(View v, int pos) {
+                posicion = pos;
+                if (mActionMode != null) {
+                    return false;
+                }
+
+                mActionMode = startSupportActionMode(mActionCallback);
+                return true;
+            }
+        };
+
     }
 
+    /**
+     * Enlaza el menu de preferencias con al interfaz
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_preferences, menu);
         return true;
     }
 
+    /**
+     * Indica la acción que realiza cuando se pulsa el boton de las preferencias
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent i = new Intent(RecView_Activity.this, Preferences_Activity.class);
@@ -76,6 +105,41 @@ public class RecView_Activity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Configuarcion de boton ELiminar elemento
+     */
+    private ActionMode.Callback mActionCallback = new ActionMode.Callback() {
+        @Override
+        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+            mode.getMenuInflater().inflate(R.menu.delete_item_menu, menu);
+            mode.setTitle("Action Menu");
+            return true;
+        }
+
+        @Override
+        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+            return false;
+        }
+
+        /**PREGUNAR SI QUIERE BORRAR EL OBJETO*/
+        @Override
+        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+            int itemId = item.getItemId();
+            switch (itemId) {
+                case R.id.act_delete:
+                    listPlanetas.remove(posicion);
+                    recyclerAdapter.notifyItemRemoved(posicion);
+                    mode.finish();
+                    break;
+            }
+            return true;
+        }
+
+        @Override
+        public void onDestroyActionMode(ActionMode mode) {
+            mActionMode = null;
+        }
+    };
 
     public class URL extends AsyncTask<String, Void, String> {
         @Override
