@@ -2,7 +2,9 @@ package com.example.proyectofinal.controller;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -15,11 +17,12 @@ import com.bumptech.glide.Glide;
 import com.example.proyectofinal.R;
 
 public class DescPlaneta_Activity extends AppCompatActivity {
+    private CircularProgressDrawable progressDrawable;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_desc_planeta);
-
         /**Añadir boton en actionBar para volver al Home activity*/
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -43,9 +46,15 @@ public class DescPlaneta_Activity extends AppCompatActivity {
         if (urlImagen == null) {
             Toast.makeText(getApplicationContext(), "Error al cargar las imagenes", Toast.LENGTH_SHORT).show();
         } else {
-            Glide.with(this).
-                    load(i.getStringExtra("url_imagen")).
-                    into(urlImagen);
+            progressDrawable = new CircularProgressDrawable(this);
+            progressDrawable.setStrokeWidth(15f);
+            progressDrawable.setStyle(CircularProgressDrawable.LARGE);
+            progressDrawable.setCenterRadius(35f);
+            progressDrawable.start();
+            Glide.with(this)
+                    .load(i.getStringExtra("url_imagen"))
+                    .placeholder(progressDrawable)
+                    .into(urlImagen);
         }
     }
 

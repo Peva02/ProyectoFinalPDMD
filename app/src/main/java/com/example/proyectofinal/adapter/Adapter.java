@@ -16,7 +16,6 @@ import androidx.swiperefreshlayout.widget.CircularProgressDrawable;
 import com.bumptech.glide.Glide;
 import com.example.proyectofinal.model.Planeta;
 import com.example.proyectofinal.R;
-import com.orhanobut.logger.Logger;
 
 import java.util.List;
 
@@ -46,7 +45,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.RecyclerHolder> {
     @Override
     public void onBindViewHolder(@NonNull RecyclerHolder holder, int position) {
         Planeta planeta = listImagenes.get(position);
-        Logger.t("URL_PLANETA").d(planeta.getUrl());
         progressDrawable = new CircularProgressDrawable(context);
         progressDrawable.setStrokeWidth(15f);
         progressDrawable.setStyle(CircularProgressDrawable.LARGE);
