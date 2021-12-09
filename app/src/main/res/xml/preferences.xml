@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <PreferenceCategory android:title="AJUSTES DE USUARIO">
         <EditTextPreference
-            android:foregroundTint="#D81B60"
             android:key="user"
             android:selectAllOnFocus="true"
             android:singleLine="true"
             android:title="Usuario"
+            app:icon="@android:drawable/ic_menu_myplaces"
             app:summary="Usuario por defecto" />
         <EditTextPreference
             android:icon="?android:attr/fingerprintAuthDrawable"

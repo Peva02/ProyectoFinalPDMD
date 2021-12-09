@@ -43,7 +43,7 @@ public class RecView_Activity extends AppCompatActivity {
         new URL().execute();
         setOnClickListener();
         listPlanetas = new ArrayList<>();
-        recyclerAdapter = new Adapter(listPlanetas, listener);
+        recyclerAdapter = new Adapter(listPlanetas, listener, this);
 
         /**Creo un GridLayoutManager de tal manera que se muestren dos objetos por fila*/
         GridLayoutManager glayout = new GridLayoutManager(this, 2);
@@ -112,7 +112,7 @@ public class RecView_Activity extends AppCompatActivity {
         @Override
         public boolean onCreateActionMode(ActionMode mode, Menu menu) {
             mode.getMenuInflater().inflate(R.menu.delete_item_menu, menu);
-            mode.setTitle("Action Menu");
+            mode.setTitle("Eliminar Foto");
             return true;
         }
 
