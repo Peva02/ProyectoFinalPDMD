@@ -6,6 +6,7 @@ import androidx.swiperefreshlayout.widget.CircularProgressDrawable;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -49,6 +50,7 @@ public class DescPlaneta_Activity extends AppCompatActivity {
             progressDrawable = new CircularProgressDrawable(this);
             progressDrawable.setStrokeWidth(15f);
             progressDrawable.setStyle(CircularProgressDrawable.LARGE);
+            progressDrawable.setColorFilter(Color.RED, android.graphics.PorterDuff.Mode.SRC_IN);
             progressDrawable.setCenterRadius(35f);
             progressDrawable.start();
             Glide.with(this)

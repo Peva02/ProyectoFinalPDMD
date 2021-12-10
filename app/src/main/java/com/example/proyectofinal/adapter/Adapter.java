@@ -1,7 +1,7 @@
 package com.example.proyectofinal.adapter;
 
 import android.content.Context;
-import android.util.Log;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +19,10 @@ import com.example.proyectofinal.R;
 
 import java.util.List;
 
+/**
+ * Contiene los elemntos de la vista
+ */
 public class Adapter extends RecyclerView.Adapter<Adapter.RecyclerHolder> {
-
     List<Planeta> listImagenes;
     private AdapterClickListener listener;
     private CircularProgressDrawable progressDrawable;
@@ -32,9 +34,18 @@ public class Adapter extends RecyclerView.Adapter<Adapter.RecyclerHolder> {
         this.context = context;
     }
 
+
+    /**
+     * Se encarga de crear los componentes de la lista
+     */
     @NonNull
     @Override
     public RecyclerHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+        /**
+         * Enlaza los elementos de la vista, con los tipos de datos de cada clase,
+         * para que el Holder pueda relacionar cada elemento en su posicion
+         */
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_items, parent, false);
         RecyclerHolder recyclerHolder = new RecyclerHolder(view);
 
@@ -48,6 +59,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.RecyclerHolder> {
         progressDrawable = new CircularProgressDrawable(context);
         progressDrawable.setStrokeWidth(15f);
         progressDrawable.setStyle(CircularProgressDrawable.LARGE);
+        progressDrawable.setColorFilter(Color.RED, android.graphics.PorterDuff.Mode.SRC_IN);
         progressDrawable.setCenterRadius(35f);
         progressDrawable.start();
         Glide.with(holder.itemView)
@@ -63,6 +75,9 @@ public class Adapter extends RecyclerView.Adapter<Adapter.RecyclerHolder> {
     }
 
 
+    /**
+     * Recrea los elementos de la vista del layout de cada elemento en la lista
+     */
     public class RecyclerHolder extends ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         ImageView imagen;
         TextView title;

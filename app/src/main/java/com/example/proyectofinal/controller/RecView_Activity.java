@@ -1,7 +1,6 @@
 package com.example.proyectofinal.controller;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
@@ -26,10 +25,10 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class RecView_Activity extends AppCompatActivity {
-    ArrayList<Planeta> listPlanetas;
-    RecyclerView recyclerView;
+    private ArrayList<Planeta> listPlanetas;
+    private RecyclerView recyclerView;
     //Instancio adaptador de mi clase
-    Adapter recyclerAdapter;
+    private Adapter recyclerAdapter;
     private Adapter.AdapterClickListener listener;
     private androidx.appcompat.view.ActionMode mActionMode;
     public int posicion = -1;
@@ -130,6 +129,7 @@ public class RecView_Activity extends AppCompatActivity {
                     listPlanetas.remove(posicion);
                     recyclerAdapter.notifyItemRemoved(posicion);
                     mode.finish();
+                    Toast.makeText(getApplicationContext(), "Foto eliminada", Toast.LENGTH_SHORT).show();
                     break;
             }
             return true;
@@ -165,7 +165,7 @@ public class RecView_Activity extends AppCompatActivity {
                         for (int z = 0; z < data.length(); z++) {
                             nasa_id = data.getJSONObject(z).getString("nasa_id");
                             title = data.getJSONObject(z).getString("title");
-
+                            /**La URL se forma a partir del nasa_id obtenido al leer el json"*/
                             listPlanetas.add(new Planeta(nasa_id, title));
                         }
                     }
