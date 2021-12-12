@@ -42,7 +42,7 @@ public class RecView_Activity extends AppCompatActivity {
         new URL().execute();
         setOnClickListener();
         listPlanetas = new ArrayList<>();
-        recyclerAdapter = new Adapter(listPlanetas, listener, this);
+        recyclerAdapter = new Adapter(listPlanetas, listener);
 
         /**Creo un GridLayoutManager de tal manera que se muestren dos objetos por fila*/
         GridLayoutManager glayout = new GridLayoutManager(this, 2);

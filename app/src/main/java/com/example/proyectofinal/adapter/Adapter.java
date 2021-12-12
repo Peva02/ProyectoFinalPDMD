@@ -26,12 +26,10 @@ public class Adapter extends RecyclerView.Adapter<Adapter.RecyclerHolder> {
     List<Planeta> listImagenes;
     private AdapterClickListener listener;
     private CircularProgressDrawable progressDrawable;
-    Context context;
 
-    public Adapter(List<Planeta> listImagenes, AdapterClickListener listener, Context context) {
+    public Adapter(List<Planeta> listImagenes, AdapterClickListener listener) {
         this.listImagenes = listImagenes;
         this.listener = listener;
-        this.context = context;
     }
 
 
@@ -56,7 +54,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.RecyclerHolder> {
     @Override
     public void onBindViewHolder(@NonNull RecyclerHolder holder, int position) {
         Planeta planeta = listImagenes.get(position);
-        progressDrawable = new CircularProgressDrawable(context);
+        progressDrawable = new CircularProgressDrawable(holder.itemView.getContext());
         progressDrawable.setStrokeWidth(15f);
         progressDrawable.setStyle(CircularProgressDrawable.LARGE);
         progressDrawable.setColorFilter(Color.RED, android.graphics.PorterDuff.Mode.SRC_IN);
